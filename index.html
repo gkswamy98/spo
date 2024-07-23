@@ -16,16 +16,16 @@
 
 <html lang="en">
 <head>
-	<title>Causal Imitation Learning under Temporally Correlated Noise</title>
+	<title>A Minimaximalist Approach to Reinforcement Learning fro Human Feedback</title>
     <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/
         if you update and want to force Facebook to re-scrape. -->
-	<meta property="og:title" content="Causal Imitation Learning under Temporally Correlated Noise" />
+	<meta property="og:title" content="A Minimaximalist Approach to Reinforcement Learning fro Human Feedback" />
 	<meta property="og:description" content="When temporally correlated noise affects multiple expert actions, it can introduce spurious correlations that an imitation learner might latch onto. We leverage modern variants of the instrumental variable regression technique to consistently recover the expert policy under TCN." />
     <!-- Twitter automatically scrapes this. Go to https://cards-dev.twitter.com/validator?
         if you update and want to force Twitter to re-scrape. -->
-    <meta property="twitter:card"          content="When temporally correlated noise affects multiple expert actions, it can introduce spurious correlations that an imitation learner might latch onto. We leverage modern variants of the instrumental variable regression technique to consistently recover the expert policy under TCN." />
-    <meta property="twitter:title"         content="Causal Imitation Learning under Temporally Correlated Noise" />
-    <meta property="twitter:description"   content="When temporally correlated noise affects multiple expert actions, it can introduce spurious correlations that an imitation learner might latch onto. We leverage modern variants of the instrumental variable regression technique to consistently recover the expert policy under TCN." />
+    <meta property="twitter:card"          content="We present Self-Play Preference Optimization (SPO), an algorithm for reinforcement learning from human feedback. Our approach is minimalist in that it does not require training a reward model nor unstable adversarial training and is therefore rather simple to implement. Our approach is maximalist in that it provably handles non-Markovian, intransitive, and stochastic preferences while being robust to the compounding errors that plague offline approaches to sequential prediction. To achieve the preceding qualities, we build upon the concept of a Minimax Winner (MW), a notion of preference aggregation from the social choice theory literature that frames learning from preferences as a zero-sum game between two policies. By leveraging the symmetry of this game, we prove that rather than using the traditional technique of dueling two policies to compute the MW, we can simply have a single agent play against itself while maintaining strong convergence guarantees. Practically, this corresponds to sampling multiple trajectories from a policy, asking a preference or teacher model to compare them, and then using the proportion of wins as the reward for a particular trajectory. We demonstrate that on a suite of continuous control tasks, we are able to learn significantly more efficiently than reward-model based approaches while maintaining robustness to the intransitive and stochastic preferences that frequently occur in practice when aggregating human judgments." />
+    <meta property="twitter:title"         content="A Minimaximalist Approach to Reinforcement Learning fro Human Feedback" />
+    <meta property="twitter:description"   content="We present Self-Play Preference Optimization (SPO), an algorithm for reinforcement learning from human feedback. Our approach is minimalist in that it does not require training a reward model nor unstable adversarial training and is therefore rather simple to implement. Our approach is maximalist in that it provably handles non-Markovian, intransitive, and stochastic preferences while being robust to the compounding errors that plague offline approaches to sequential prediction. To achieve the preceding qualities, we build upon the concept of a Minimax Winner (MW), a notion of preference aggregation from the social choice theory literature that frames learning from preferences as a zero-sum game between two policies. By leveraging the symmetry of this game, we prove that rather than using the traditional technique of dueling two policies to compute the MW, we can simply have a single agent play against itself while maintaining strong convergence guarantees. Practically, this corresponds to sampling multiple trajectories from a policy, asking a preference or teacher model to compare them, and then using the proportion of wins as the reward for a particular trajectory. We demonstrate that on a suite of continuous control tasks, we are able to learn significantly more efficiently than reward-model based approaches while maintaining robustness to the intransitive and stochastic preferences that frequently occur in practice when aggregating human judgments." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -33,11 +33,11 @@
 <body>
 <div class="container">
     <div class="title">
-        Causal Imitation Learning under Temporally Correlated Noise
+        A Minimaximalist Approach to Reinforcement Learning fro Human Feedback
     </div>
 
     <div class="venue">
-        Oral at ICML'22
+        ICML'24
     </div>
 
     <br><br>
@@ -46,47 +46,48 @@
         <a href="https://gokul.dev/">Gokul Swamy</a><sup>1</sup>
     </div>
     <div class="author">
-        <a href="http://www.sanjibanchoudhury.com/">Sanjiban Choudhury</a><sup>2</sup>
+        <a href="https://cdann.net/">Christoph Dann</a><sup>2</sup>
     </div>
     <div class="author">
-        <a href="https://www.ri.cmu.edu/ri-faculty/j-andrew-drew-bagnell/">Drew Bagnell</a><sup>3, 1</sup>
+        <a href="https://rahulkidambi.github.io/">Rahul Kidambi</a><sup>2</sup>
     </div>
     <div class="author">
         <a href="https://zstevenwu.com/">Steven Wu</a><sup>1</sup>
+    </div>
+    <div class="author">
+        <a href="https://alekhagarwal.net/">Alekh Agarwal</a><sup>2</sup>
     </div>
 
     <br><br>
 
     <div class="affiliation"><sup>1&nbsp;</sup>CMU</div>
-    <div class="affiliation"><sup>2&nbsp;</sup>Cornell University</div>
-    <div class="affiliation"><sup>3&nbsp;</sup>Aurora Innovation</div>
+    <div class="affiliation"><sup>2&nbsp;</sup>Google Research</div>
     
 
     <br><br>
 
-    <div class="links"><a href="https://arxiv.org/pdf/2202.01312.pdf"><i class="fa fa-file-text", style="font-size: 50px; padding-bottom: 10px"></i><br>[Paper]</a></div>
-    <div class="links"><a href="https://www.youtube.com/watch?v=FPyL9vMGpFE"><i class="fa fa-play-circle" style="font-size: 50px; padding-bottom: 10px"></i><br>[Video]</a></div>
-    <div class="links"><a href="https://github.com/gkswamy98/causal_il"><i class="fa fa-github" style="font-size: 50px; padding-bottom: 10px"></i><br>[Code]</a></div>
+    <div class="links"><a href="https://arxiv.org/pdf/2401.04056.pdf"><i class="fa fa-file-text", style="font-size: 50px; padding-bottom: 10px"></i><br>[Paper]</a></div>
+    <div class="links"><a href="https://www.youtube.com/watch?v=zcXb97F8vq0"><i class="fa fa-play-circle" style="font-size: 50px; padding-bottom: 10px"></i><br>[Video]</a></div>
 
     <br><br>
 
     <img style="width: 45%;" src="./resources/causil_tikz.png" alt="Teaser figure."/>
     <br>
     <p style="width: 80%;">
-      <br> When temporally correlated noise affects a pair of expert actions, it can create spurious correlations between recorded states and actions. This is because it travels through the dynamics to affect the state at the next timestep as well as affecting the next action (red path above). Standard imitation learning algorithms like behavioral cloning might latch onto these spurious correlations and learn policies that perform poorly at test-time. We leverage modern variants of the instrumental variable technique to propose two algorithms that are able to provably match expert performance under TCN.
+      <br> TODO
     </p>
     <hr>
 
     <h1>Abstract</h1>
     <p style="width: 80%;">
-        We develop algorithms for imitation learning from policy data that was corrupted by temporally correlated noise in expert actions. When noise affects multiple timesteps of recorded data, it can manifest as spurious correlations between states and actions that a learner might latch on to, leading to poor policy performance. To break up these spurious correlations, we apply modern variants of the <i>instrumental variable regression</i> (IVR) technique of econometrics, enabling us to recover the underlying policy <i>without</i> requiring access to an interactive expert. In particular, we present two techniques, one of a generative-modeling flavor (<code>DoubIL</code>) that can utilize access to a simulator, and one of a game-theoretic flavor (<code>ResiduIL</code>) that can be run entirely offline. We find both of our algorithms compare favorably to behavioral cloning on simulated control tasks.
+	    We present Self-Play Preference Optimization (SPO), an algorithm for reinforcement learning from human feedback. Our approach is minimalist in that it does not require training a reward model nor unstable adversarial training and is therefore rather simple to implement. Our approach is maximalist in that it provably handles non-Markovian, intransitive, and stochastic preferences while being robust to the compounding errors that plague offline approaches to sequential prediction. To achieve the preceding qualities, we build upon the concept of a Minimax Winner (MW), a notion of preference aggregation from the social choice theory literature that frames learning from preferences as a zero-sum game between two policies. By leveraging the symmetry of this game, we prove that rather than using the traditional technique of dueling two policies to compute the MW, we can simply have a single agent play against itself while maintaining strong convergence guarantees. Practically, this corresponds to sampling multiple trajectories from a policy, asking a preference or teacher model to compare them, and then using the proportion of wins as the reward for a particular trajectory. We demonstrate that on a suite of continuous control tasks, we are able to learn significantly more efficiently than reward-model based approaches while maintaining robustness to the intransitive and stochastic preferences that frequently occur in practice when aggregating human judgments.
     </p>
     <br>
     <hr>
 
     <h1>Video</h1>
     <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/FPyL9vMGpFE" frameBorder="0"
+        <iframe src="https://www.youtube.com/embed/zcXb97F8vq0" frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
     </div>
@@ -124,13 +125,13 @@
         </a>
     </div>
     <div class="paper-info">
-        <h3>Causal Imitation Learning under Temporally Correlated Noise</h3>
-        <p>Gokul Swamy, Sanjiban Choudhury, J. Andrew Bagnell, Zhiwei Steven Wu</p>
+        <h3>A Minimaximalist Approach to Reinforcement Learning fro Human Feedback</h3>
+        <p>Gokul Swamy, Christoph Dann, Rahul Kidambi, Zhiwei Steven Wu, Alekh Agarwal</p>
         <pre><code>@misc{swamy2021causal,
-    title = {Causal Imitation Learning under Temporally Correlated Noise},
-    author = {Gokul Swamy and Sanjiban Choudhury and J. Andrew Bagnell and Zhiwei Steven Wu},
-    year = {2022},
-    booktitle = {Proceedings of the 39th International Conference on Machine Learning}
+    title = {A Minimaximalist Approach to Reinforcement Learning fro Human Feedback},
+    author = {Gokul Swamy and Christoph Dann and Rahul Kidambi and Zhiwei Steven Wu and Alekh Agarwal},
+    year = {2024},
+    booktitle = {Proceedings of the 41st International Conference on Machine Learning}
 }</code></pre>
     </div>
 
