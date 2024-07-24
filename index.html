@@ -108,9 +108,14 @@
     <p style="width: 80%;">Thankfully, social choice theorists have been thinking about the problem of preference aggregation for a long time. A classical solution concept is the <i>minimax winner</i>, which proposes framing learning from preferences as solving a two-player zero sum game: $$p^*, q^* = \arg\min_{p \in \Pi} \arg\max_{q \in \Pi} \mathbb{E}_{\xi_1 \sim p, \xi_2 \sim q}[P(\xi_1 \succ \xi_2)],$$
 	where $P$ is a learned preference or teacher model. Intuitively, both players ($p$ and $q$) are trying to generate prompt completions ($\xi_1$ and $\xi_2$) that are preferred to those of the other player. Critically, because we are not collapsing down the preference <i>matrix</i> to a <i>scalar</i> reward, we are agnostic to whether intransitive preferences exist. Unfortunately, solving this game via adversarial training is infeasible at the scale of modern-day LLMs. </p>
   <h2>3. $\texttt{SPO}$: Self-Play Preference Optimization </h2>
-    <p style="width: 80%;">Observe that the above game is entirely symmetric (i.e. $p$ and $q$ swapping strategies leads to the same payoff). Thus, rather than maintaining two policies in memory, one can instead adopt a simple <i>self-play</i> strategy of just comparing multiple completions from the same policy while preserving strong theoretical guarantees. Practically, $\texttt{SPO}$ corresponds to sampling multiple trajectories fromm a policy, asking a preference or teacher model to compare them, and then using the proportion of wins as the reward for a particular trajectory for a downstream policy optimization algorithm.</p>
-	  
-	  <hr>
+    <p style="width: 80%;">Observe that the above game is entirely symmetric (i.e. $p$ and $q$ swapping strategies leads to the same payoff). Thus, rather than maintaining two policies in memory, one can instead adopt a simple <i>self-play</i> strategy of just comparing multiple completions from the same policy while preserving strong theoretical guarantees. More formally, we propose a general <i>reduction</i> from computing Minimax Winners to no-regret online learning.</p>
+
+	<p style="width: 80%;">Practically, $\texttt{SPO}$ corresponds to sampling multiple trajectories fromm a policy, asking a preference or teacher model to compare them, and then using the proportion of wins as the reward for a particular trajectory for a downstream policy optimization algorithm.</p>
+	    <br>
+	<img style="width: 30%;" src="./resources/agg.png" alt="Aggregating Diverse Rater Preferences Produces Intransitivity"/>
+    <br><br>    
+	
+	<hr>
 
     <h1>Paper</h1>
     <div class="paper-thumbnail">
