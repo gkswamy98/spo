@@ -109,11 +109,12 @@
 	where $P$ is a learned preference or teacher model. Intuitively, both players ($p$ and $q$) are trying to generate prompt completions ($\xi_1$ and $\xi_2$) that are preferred to those of the other player. Critically, because we are not collapsing down the preference <i>matrix</i> to a <i>scalar</i> reward, we are agnostic to whether intransitive preferences exist. Unfortunately, solving this game via adversarial training is infeasible at the scale of modern-day LLMs. </p>
   <h2>3. $\texttt{SPO}$: Self-Play Preference Optimization </h2>
     <p style="width: 80%;">Observe that the above game is entirely symmetric (i.e. $p$ and $q$ swapping strategies leads to the same payoff). Thus, rather than maintaining two policies in memory, one can instead adopt a simple <i>self-play</i> strategy of just comparing multiple completions from the same policy while preserving strong theoretical guarantees.</p>
-    <p style="width: 80%;">More formally, we propose a general <i>reduction</i> from computing Minimax Winners to no-regret online learning.</p> 
 	
  <p style="width: 80%;"> <b>Main Theorem (Informal):</b> Define the following sequence of policy-dependent $\texttt{SPO}$ rewards:
 $$r_{t}^{\texttt{SPO}}(\xi) \triangleq  \mathbb{E}_{\xi' \sim p_t}[P(\xi \succ \xi')].$$
 Let $\mathbb{A}$ be a no-regret algorithm over the policy class. Set $p_{t+1} = \mathbb{A}(r_{1:t}^{\texttt{SPO}})$. Then, the average policy $\bar{p} = (p_1+\ldots+p_T)/T$ is an $\frac{2 \mathsf{Reg}_{\mathbb{A}}(T)}{T}$-approximate Minimax Winner.</p>
+
+	    <p style="width: 80%;">This is a general <i>reduction</i> from computing Minimax Winners to no-regret online learning! </p> 
 
 	<p style="width: 80%;">Practically, $\texttt{SPO}$ corresponds to sampling multiple trajectories fromm a policy, asking a preference or teacher model to compare them, and then using the proportion of wins as the reward for a particular trajectory for a downstream policy optimization algorithm.</p>
 	    <br>
