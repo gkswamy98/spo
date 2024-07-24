@@ -97,25 +97,13 @@
 
     <h1>Key Insights</h1>
 
-    <h2>1. Dangers of TCN in Imitation Learning</h2>
-    <p style="width: 80%;">The core reason TCN is dangerous is that it introduces spurious correlations in the recorded actions that do not have their true cause in the recorded state. When TCN fromm a past step travels through the dynamics to influence the next state, the next state and next action are also spuriously correlated. This breaks a cardinal assumption of regression as both the inputs (states) and targets (actions) are affected by the same noise, rendering standard imitation learning approaches inconsistent. This manifests as the learner trying to reproduce the TCN, which compunds with the TCN at test time to lead to poor performance. For example, if a quadcopter flight demonstration is perturbed by TCN in the form of wind, the learner might attempt to swerve as much as the expert did, which would lead to even more swerving due to the continued influence of the wind!</p>
+    <h2>Aggregating Diverse Rater Preferences Produces Intransitivity</h2>
+    <p style="width: 80%;">Consider aggregating (as is neccesary at scale) the population of three raters, each of whom has rational preferences (i.e. preferences that can be explained by a reward / utility function).</p>
+    <img style="width: 70%;" src="./resources/agg.svg" alt="Aggregating Diverse Rater Preferences Produces Intransitivity"/>
+    <p style="width: 80%;">Observe that there is no utility function that can rationalize these aggregate preferences as it would need to score 🪨 over ✂️, ✂️ over 📝, and 📝 over 🪨, an impossibility. This problem only becomes <i>worse</i> when raters have more options to chose between (e.g. the space of all natural language completions to a prompt).</p>
 
-    <h2>2. Instrumental Variable Regression</h2>
-    <p style="width: 80%;">While a queryable expert would be able to give us action labels that are not affected by TCN, this is not a realistic assumption for many domains. We instead focus on learning fromm <i>observational</i> data in the form of collected expert demonstrations. We build upon a technique fromm econometrics known as <i>instrumental variable regression</i> to denoise the inputs to our regression procedure. To do this, one conditions on an <i>instrument</i> $Z$: a source of random variation independent of the confounder (the shared noise between $X$ and $Y$). Graphically,</p>
-    <img style="width: 22%;" src="./resources/ivr.png" alt="IVR."/>
-    <p style="width: 80%;"> Mathematically, instead of regressing fromm $X \rightarrow Y$, one regresses fromm $X|Z \rightarrow Y|Z$. We present a unified deriviation of modern IVR techniques and derive performance bounds for them in our paper.</p>
-
-    <h2>3. Two Algorithms for Imitation under TCN</h2>
-    <p style="width: 80%;">The natural question at this point is how to apply IVR to the imitation learning problem. Our key insight is that we can leverage <i>past states</i> as an instrument as they are independent of future TCN! Graphically, </p>
-    <img style="width: 40%;" src="./resources/seq_ivr.png" alt="Sequential IVR."/>
-        
-    <p style="width: 80%;"> In math, we minimize $\mathbb{E}[\mathbb{E}[(a_{t} - \pi(s_{t})|s_{t-1}]^2]$ instead of $\mathbb{E}[(a_t - \pi(s_t))^2]$ like usual. We derive two algorithms for doing so efficiently with strong performance guarantees:</p>
-    <ul style="width: 80%; margin: auto; text-align: left; list-style-type: none;">
-        <li><code>DoubIL</code>: One first runs behavioral cloning, plugs in the proposed actions into a simulator to get fresh state draws, and then regresses fromm these fresh states to the recorded expert actions. Enjoys performance bound $J(\pi_E) - J(\pi) \leq c(\sqrt{\epsilon} + \sqrt{\delta})\kappa(\Pi)T^2$.</li>
-        <li><code>ResiduIL</code>: A purely offline algorithm that has the learner minimize an instrument-weighted residual with the weighting being chosen by an adversary. Enjoys performance bound $J(\pi_E) - J(\pi) \leq c\sqrt{\epsilon}\kappa(\Pi)T^2$.</li>
-      </ul> <br>
-      <p style="width: 80%;"> We emphasize that standard IL algorithms like behavioral cloning have no such performance guarantees under TCN. We implement both algorithms in PyTorch and test them out on environments fromm the PyBullet suite. We find that we are able to significantly outperform behavioral cloning at matching denoised expert actions, cumulative reward, and generalizing to different noise distributions. We release our code below.</p>
-      <hr>
+  
+	<hr>
 
     <h1>Paper</h1>
     <div class="paper-thumbnail">
