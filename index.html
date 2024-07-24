@@ -102,11 +102,11 @@
     <br>
 	<img style="width: 70%;" src="./resources/agg.png" alt="Aggregating Diverse Rater Preferences Produces Intransitivity"/>
     <br><br>
-	<p style="width: 80%;">Observe that there is no utility function that can rationalize these aggregate preferences as it would need to score 🪨 over ✂️, ✂️ over 📝, and 📝 over 🪨, an impossibility. This problem only becomes <i>worse</i> when raters have more options to chose between (e.g. the space of all natural language completions to a prompt).</p>
+	<p style="width: 80%;">Observe that there is no utility function that can rationalize these aggregate preferences as it would need to score 🪨 over ✂️, ✂️ over 📝, and 📝 over 🪨, an impossibility. This problem only becomes <i>worse</i> when raters have more options to chose between (e.g. the space of all natural language completions to a prompt). As a result, reward-based RLHF methods (PPO, DPO) will attempt to satisfy the majority preference, ignoring the diversity of preferences actually present in the rater population.</p>
 
   <h2>2. Framing RLHF as a Game Handles Intransitivity but Introduced Adversarial Training</h2>
-    <p style="width: 80%;">Thankfully, social choice theorists have been thinking about the problem of preference aggregation for a long time. A classical solution concept is the <i>minimax winner</i>, which proposes framing learning from preferences as solving a two-player zero sum game: $$\pi$$</p>
-
+    <p style="width: 80%;">Thankfully, social choice theorists have been thinking about the problem of preference aggregation for a long time. A classical solution concept is the <i>minimax winner</i>, which proposes framing learning from preferences as solving a two-player zero sum game: $$p^{\star}, q^{\star} = \arg\min_{p \in \Pi} \arg\max_{q \in \Pi} \mathbb{E}_{\xi_1 \sim p, \xi_2 \sim q}[\mathcal{P}(\xi_1 \succ \xi_2)],$$</p>
+	where $\mathcal{P}$ is a learned preference or teacher model. Intuitively, both players ($p$ and $q$) are trying to generate prompt completions ($\xi_1$ and $\xi_2$) that are preferred to those of the other player. Critically, because we are not collapsing down the preference <i>matrix</i> to a <i>scalar</i> reward, we are agnostic to whether intransitive preferences exist.
 	<hr>
 
     <h1>Paper</h1>
